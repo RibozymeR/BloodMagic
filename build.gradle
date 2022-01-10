@@ -31,39 +31,6 @@ if (new File(projectDir, '.git').exists()) {
     gitHash = repo.log().find().abbreviatedId
 }
 
-repositories {
-    maven {
-        name 'CB Maven FS'
-        url "http://chickenbones.net/maven/"
-    }
-    maven {
-        name 'DVS1 Maven FS'
-        url 'http://dvs1.progwml6.com/files/maven'
-    }
-    maven {
-    	name 'TehNut Repo'
-    	url 'http://tehnut.info/maven/'
-    }
-    maven {
-        name 'tterrag Repo'
-        url 'http://maven.tterrag.com/'
-    }
-	ivy {
-		name "MineTweaker3"
-        artifactPattern "http://minetweaker3.powerofbytes.com/download/[module]-[revision].[ext]"
-    }	
-}
-
-dependencies {
-    compile "codechicken:CodeChickenLib:" + config.mc_version + "-" + config.cclib_version + ":dev"
-    compile "codechicken:CodeChickenCore:" + config.mc_version + "-" + config.ccc_version + ":dev"
-    compile "codechicken:NotEnoughItems:" + config.mc_version + "-" + config.nei_version + ":dev"
-	compile name: 'MineTweaker3', version: config.minetweaker_version, ext: 'jar'
-	compile "codechicken:ForgeMultipart:1.7.10-1.1.0.314:dev"
-	compile "info.amerifrance.guideapi:Guide-API:" + config.mc_version + "-" + config.guideapi_version + ":deobf"
-    compile "team.chisel:Chisel:" + config.chisel_version + ":api"
-}
-
 minecraft {
     version = config.mc_version + "-" + config.forge_version
     runDir = "run"

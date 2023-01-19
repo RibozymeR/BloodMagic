@@ -41,13 +41,11 @@ public class RitualEffectGrowth extends RitualEffect
             boolean hasTerrae = this.canDrainReagent(ritualStone, ReagentRegistry.terraeReagent, terraeDrain, false);
             boolean hasOrbisTerrae = this.canDrainReagent(ritualStone, ReagentRegistry.orbisTerraeReagent, orbisTerraeDrain, false);
             boolean hasVirtus = this.canDrainReagent(ritualStone, ReagentRegistry.virtusReagent, virtusDrain, false);
-
             int speed = this.getSpeedForReagents(hasTerrae, hasOrbisTerrae);
             if (world.getWorldTime() % speed != 0)
             {
                 return;
             }
-
             if (this.canDrainReagent(ritualStone, ReagentRegistry.aquasalusReagent, aquasalusDrain, false))
             {
                 int hydrationRange = hasVirtus ? 4 : 1;
@@ -55,15 +53,11 @@ public class RitualEffectGrowth extends RitualEffect
                 {
                     for (int j = -hydrationRange; j <= hydrationRange; j++)
                     {
-                        for (int k = -hydrationRange; k <= hydrationRange; k++) 
+                        if (this.canDrainReagent(ritualStone, ReagentRegistry.aquasalusReagent, aquasalusDrain, false))
                         {
-                            
-                            if (this.canDrainReagent(ritualStone, ReagentRegistry.aquasalusReagent, aquasalusDrain, false))
+                            if (SpellHelper.hydrateSoil(world, x + i, y + 1, z + j))
                             {
-                                if (SpellHelper.hydrateSoil(world, x + i, y + k, z + j))
-                                {
-                                    this.canDrainReagent(ritualStone, ReagentRegistry.aquasalusReagent, aquasalusDrain, true);
-                                }
+                                this.canDrainReagent(ritualStone, ReagentRegistry.aquasalusReagent, aquasalusDrain, true);
                             }
                         }
                     }
@@ -77,20 +71,12 @@ public class RitualEffectGrowth extends RitualEffect
             {
                 for (int j = -range; j <= range; j++)
                 {
-                    
-                    for (int k = -range; k <= range; k++) 
+                    Block block = world.getBlock(x + i, y + 2, z + j);
+                    if (block instanceof IPlantable || block instanceof IGrowable)
                     {
-                        
-                        Block block = world.getBlock(x + i, y + k, z + j);
-    
-                        if (block instanceof IPlantable || block instanceof IGrowable)
-                        {
-                            {
-                                SpellHelper.sendIndexedParticleToAllAround(world, x, y, z, 20, world.provider.dimensionId, 3, x, y, z);
-                                block.updateTick(world, x + i, y + k, z + j, world.rand);
-                                flag++;
-                            }
-                        }
+                        SpellHelper.sendIndexedParticleToAllAround(world, x, y, z, 20, world.provider.dimensionId, 3, x, y, z);
+                        block.updateTick(world, x + i, y + 2, z + j, world.rand);
+                        flag++;
                     }
                 }
             }

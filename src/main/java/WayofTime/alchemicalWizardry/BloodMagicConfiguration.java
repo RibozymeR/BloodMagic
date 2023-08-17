@@ -137,6 +137,13 @@ public class BloodMagicConfiguration {
 						"oreAlduorite", "100", "oreKalendrite", "50", "oreVulcanite", "75", "oreSanguinite", "75" })
 				.getStringList();
 		AlchemicalWizardry.cobaltBlockMeteorRadius = config.get("meteor", "cobaltBlockMeteorRadius", 8).getInt();
+		
+		AlchemicalWizardry.shardMeteorArray = config
+				.get("meteor", "shardMeteor", new String[] { "oreInfusedAir", "200", "oreInfusedFire", "200",
+						"oreInfusedWater", "200", "oreInfusedEarth", "200", "oreInfusedOrder", "200",
+						"oreInfusedEntropy", "200" })
+				.getStringList();
+		AlchemicalWizardry.shardMeteorRadius = config.get("meteor", "shardMeteorRadius", 6).getInt();
 
 		AlchemicalWizardry.allowedCrushedOresArray = config.get("oreCrushing", "allowedOres",
 				new String[] { "iron", "gold", "copper", "tin", "lead", "silver", "osmium" }).getStringList();

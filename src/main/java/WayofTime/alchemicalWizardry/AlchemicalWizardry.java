@@ -320,6 +320,9 @@ public class AlchemicalWizardry {
 
 	public static String[] cobaltBlockMeteorArray;
 	public static int cobaltBlockMeteorRadius;
+
+	public static String[] shardMeteorArray;
+	public static int shardMeteorRadius;
 	
 	public static String[] allowedCrushedOresArray;
 	
@@ -670,6 +673,8 @@ public class AlchemicalWizardry {
 		final ItemStack mithrilBlockStack = mithrilSet.getBlock("Mithril");
 		
 		final ItemStack cobaltBlockStack = new ItemStack(TinkerWorld.metalBlock, 1, 0);
+		
+		final ItemStack shardClusterStack = ItemApi.getBlock("blockCrystal", 6);
 		
 		final ItemStack lapisStack = new ItemStack(Items.dye, 1, 4);
 		final ItemStack lavaBucketStack = new ItemStack(Items.lava_bucket);
@@ -1267,6 +1272,10 @@ public class AlchemicalWizardry {
 				+ cobaltBlockStack.getUnlocalizedName() + ":" + cobaltBlockStack.getItemDamage());
 		System.out.println(cobaltBlockMeteorArray.toString());
 		MeteorRegistry.registerMeteorParadigm(cobaltBlockStack, cobaltBlockMeteorArray, cobaltBlockMeteorRadius);
+		System.out.println("Adding " + shardClusterStack.getDisplayName() + " to the meteor registry. Info: "
+				+ shardClusterStack.getUnlocalizedName() + ":" + shardClusterStack.getItemDamage());
+		System.out.println(shardMeteorArray.toString());
+		MeteorRegistry.registerMeteorParadigm(shardClusterStack, shardMeteorArray, shardMeteorRadius);
 		
 		final ItemStack stickStack = new ItemStack(Items.stick, 1, craftingConstant);
 		
